@@ -8,7 +8,7 @@
     android:paddingTop="10dp"
     android:paddingEnd="20dp"
     android:paddingBottom="10dp"
-    tools:context=".MainActivity">
+    tools:context=".movielist.MainActivity">
 
     <TextView
         android:id="@+id/tvSort"
