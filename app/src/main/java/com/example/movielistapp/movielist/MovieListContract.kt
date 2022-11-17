@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModel as BaseViewModel
 interface MovieListContract {
 
     interface Navigation {
-        val navigateToMovieDetail: LiveData<Unit>
+        val navigateToMovieDetail: LiveData<String>
     }
 
-    abstract class ViewModel : BaseViewModel() {
+    abstract class ViewModel : BaseViewModel(), Navigation {
         abstract val isLoading: LiveData<Boolean>
         abstract val displayMovieList: LiveData<List<MovieListDisplayableObject>>
 
@@ -22,6 +22,7 @@ interface MovieListContract {
     }
 
     data class MovieListDisplayableObject(
+        val id: String,
         val image: String,
         val movieName: String,
         val shortDescription: String,

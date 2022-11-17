@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
 import com.example.movielistapp.databinding.ActivityMainBinding
+import com.example.movielistapp.moviedetails.MovieDetailActivity
 import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.movielist.viewmodel.MovieListViewModel
 
@@ -40,6 +41,10 @@ class MainActivity : BaseActivity() {
             with(viewModel) {
                 isLoading.observe(this@MainActivity) {
 
+                }
+
+                navigateToMovieDetail.observe(this@MainActivity) {
+                    MovieDetailActivity.start(this@MainActivity, it)
                 }
 
                 displayMovieList.observe(this@MainActivity, :: handleShowData)

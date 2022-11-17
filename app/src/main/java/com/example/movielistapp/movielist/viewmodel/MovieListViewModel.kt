@@ -2,8 +2,12 @@ package com.example.movielistapp.movielist.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.movielist.MovieListContract.MovieListDisplayableObject
+import com.example.movielistapp.usecase.getmovielistusecase.GetMovieListUseCase
+import com.example.movielistapp.usecase.getmovielistusecase.GetMovieListUseCaseImpl
+import kotlinx.coroutines.launch
 
 
 /**
@@ -18,11 +22,14 @@ class MovieListViewModel : MovieListContract.ViewModel() {
     private var _displayMovieList = MutableLiveData<List<MovieListDisplayableObject>>()
     override val displayMovieList: LiveData<List<MovieListDisplayableObject>> = _displayMovieList
 
+    private var _navigateToMovieDetail = MutableLiveData<String>()
+    override val navigateToMovieDetail: LiveData<String> = _navigateToMovieDetail
+
     override fun fetchMoviesList() {
-        TODO("Not yet implemented")
+
     }
 
     override fun onItemSelected(item: MovieListDisplayableObject) {
-        TODO("Not yet implemented")
+        _navigateToMovieDetail.value = item.id
     }
 }
