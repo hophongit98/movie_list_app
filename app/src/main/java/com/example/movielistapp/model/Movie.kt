@@ -10,7 +10,8 @@ class Movie(
     val movieName: String,
     val duration: Int,
     val kind: List<MovieType>,
-    val point: Float
+    val point: Float,
+    val isOnWatchList: Boolean
 )
 
 enum class MovieType(type: String) {

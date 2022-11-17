@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielistapp.databinding.ItemMovieBinding
 import com.example.movielistapp.movielist.MovieListContract
-import com.example.movielistapp.movielist.MovieListContract.MovieListDisplayableObject
+import com.example.movielistapp.movielist.MovieListContract.MovieDisplayableObject
 
 /**
  * Created by Phillip Truong
  * date 16/11/2022.
  */
-class MovieListAdapter(private val itemSelected: (MovieListDisplayableObject) -> Unit) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Unit) : RecyclerView.Adapter<MovieViewHolder>() {
 
-    private val movieList = arrayListOf<MovieListDisplayableObject>()
+    private val movieList = arrayListOf<MovieDisplayableObject>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false), itemSelected)
@@ -27,7 +27,7 @@ class MovieListAdapter(private val itemSelected: (MovieListDisplayableObject) ->
 
     override fun getItemCount() = movieList.size
 
-    fun setData(movieList: List<MovieListContract.MovieListDisplayableObject>) {
+    fun setData(movie: List<MovieListContract.MovieDisplayableObject>) {
         // set data here
     }
 

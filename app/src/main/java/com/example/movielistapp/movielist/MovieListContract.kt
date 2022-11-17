@@ -15,15 +15,15 @@ interface MovieListContract {
 
     abstract class ViewModel : BaseViewModel(), Navigation {
         abstract val isLoading: LiveData<Boolean>
-        abstract val displayMovieList: LiveData<List<MovieListDisplayableObject>>
+        abstract val displayMovie: LiveData<List<MovieDisplayableObject>>
 
         abstract fun fetchMoviesList()
-        abstract fun onItemSelected(item: MovieListDisplayableObject)
+        abstract fun onItemSelected(item: MovieDisplayableObject)
     }
 
-    data class MovieListDisplayableObject(
+    data class MovieDisplayableObject(
         val id: String,
-        val image: String,
+        val imageUrl: String,
         val movieName: String,
         val shortDescription: String,
         val isOnWatchList: Boolean

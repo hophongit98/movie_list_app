@@ -47,12 +47,12 @@ class MainActivity : BaseActivity() {
                     MovieDetailActivity.start(this@MainActivity, it)
                 }
 
-                displayMovieList.observe(this@MainActivity, :: handleShowData)
+                displayMovie.observe(this@MainActivity, :: handleShowData)
             }
         }
     }
 
-    private fun handleShowData(movieList: List<MovieListContract.MovieListDisplayableObject>) {
-        (binding.rvMovieList.adapter as MovieListAdapter).setData(movieList)
+    private fun handleShowData(movie: List<MovieListContract.MovieDisplayableObject>) {
+        (binding.rvMovieList.adapter as MovieListAdapter).setData(movie)
     }
 }
