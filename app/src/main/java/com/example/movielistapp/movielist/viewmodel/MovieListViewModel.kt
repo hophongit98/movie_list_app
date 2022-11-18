@@ -1,6 +1,10 @@
 package com.example.movielistapp.movielist.viewmodel
 
 import androidx.lifecycle.*
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.movielistapp.MovieListApplication
 import com.example.movielistapp.model.Movie
 import com.example.movielistapp.model.MovieType
 import com.example.movielistapp.movielist.MovieListContract
@@ -53,5 +57,14 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
 
     private fun formatToShortDescription(duration: Int, types: List<MovieType>): String {
         return "${StringUtils.convertToHourAndMinutes(duration)}-${StringUtils.convertMovieTypesToString(types)}"
+    }
+
+    companion object {
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val myRepository = (this[APPLICATION_KEY] as MovieListApplication).repository
+                MovieListViewModel(myRepository)
+            }
+        }
     }
 }

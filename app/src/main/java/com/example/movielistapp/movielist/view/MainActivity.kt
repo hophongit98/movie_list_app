@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
 
     override fun initialise() {
 
-        viewModel = ViewModelProvider(this).get(MovieListViewModel::class.java).also {
+        viewModel = ViewModelProvider(this, MovieListViewModel.Factory)[MovieListViewModel::class.java].also {
             it.getMoviesList()
         }
 
@@ -47,7 +47,7 @@ class MainActivity : BaseActivity() {
                     MovieDetailActivity.start(this@MainActivity, it)
                 }
 
-                displayMovie.observe(this@MainActivity, :: handleShowData)
+                displayMovie.observe(this@MainActivity, ::handleShowData)
             }
         }
     }
