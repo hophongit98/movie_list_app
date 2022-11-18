@@ -10,6 +10,7 @@ import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.movielist.MovieListContract.MovieDisplayableObject
 import com.example.movielistapp.usecase.getmovielistusecase.GetMovieListUseCase
 import com.example.movielistapp.usecase.getmovielistusecase.GetMovieListUseCaseImpl
+import com.example.movielistapp.utils.StringUtils
 import kotlinx.coroutines.launch
 
 /**
@@ -61,6 +62,6 @@ class MovieListViewModel : MovieListContract.ViewModel() {
     }
 
     private fun formatToShortDescription(duration: Int, types: List<MovieType>): String {
-        return ""
+        return "${StringUtils.convertToHourAndMinutes(duration)}-${StringUtils.convertMovieTypesToString(types)}"
     }
 }

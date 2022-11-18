@@ -14,7 +14,7 @@ class Movie(
     val isOnWatchList: Boolean
 )
 
-enum class MovieType(type: String) {
+enum class MovieType(val type: String) {
     ACTION("Action"),
     ADVENTURE("Adventure"),
     ANIMATION("Animation"),
