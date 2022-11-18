@@ -9,7 +9,6 @@ import com.example.movielistapp.model.MovieType
 import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.movielist.MovieListContract.MovieDisplayableObject
 import com.example.movielistapp.usecase.getmovielistusecase.GetMovieListUseCase
-import com.example.movielistapp.usecase.getmovielistusecase.GetMovieListUseCaseImpl
 import com.example.movielistapp.utils.StringUtils
 import kotlinx.coroutines.launch
 
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
  * Created by Phillip Truong
  * date 17/11/2022.
  */
-class MovieListViewModel : MovieListContract.ViewModel() {
+class MovieListViewModel(private val getMovieListUseCase : GetMovieListUseCase) : MovieListContract.ViewModel() {
 
     private var _isLoading = MutableLiveData<Boolean>()
     override val isLoading: LiveData<Boolean> = _isLoading
@@ -34,7 +33,7 @@ class MovieListViewModel : MovieListContract.ViewModel() {
 
     override fun fetchMoviesList() {
         viewModelScope.launch {
-            when (val result = GetMovieListUseCaseImpl().execute(Unit)) {
+            when (val result = getMovieListUseCase.execute(Unit)) {
                 is GetMovieListUseCase.Result.Success -> handleGetMovieListSuccess(result)
                 is GetMovieListUseCase.Result.Error -> handleGetMovieListError(result)
             }

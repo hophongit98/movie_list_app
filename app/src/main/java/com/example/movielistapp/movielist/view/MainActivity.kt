@@ -24,7 +24,7 @@ class MainActivity : BaseActivity() {
         }
 
         binding.rvMovieList.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(this@MainActivity)
             val movieListAdapter = MovieListAdapter {
                 viewModel.onItemSelected(it)
             }
@@ -53,6 +53,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun handleShowData(movie: List<MovieListContract.MovieDisplayableObject>) {
-        (binding.rvMovieList.adapter as MovieListAdapter).setData(movie)
+        (binding.rvMovieList.adapter as MovieListAdapter).submitList(movie)
     }
 }
