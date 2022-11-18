@@ -5,7 +5,7 @@ package com.example.movielistapp.repository
  * date 18/11/2022.
  */
 class MovieRemoteDataSourceImpl : MovieRemoteDataSource {
-    override fun fetchRemoteMovieList() {
-        TODO("Not yet implemented")
+    override suspend fun fetchRemoteMovieList(listener: MovieRemoteDataSource.FetchRemoteMovieList) {
+        listener.onSuccess(listOf())
     }
 }

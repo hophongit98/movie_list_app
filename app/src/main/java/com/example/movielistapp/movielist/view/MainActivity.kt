@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
     override fun initialise() {
 
         viewModel = ViewModelProvider(this).get(MovieListViewModel::class.java).also {
-            it.fetchMoviesList()
+            it.getMoviesList()
         }
 
         binding.rvMovieList.apply {
