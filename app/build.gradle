@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -60,6 +61,12 @@ dependencies {
 
     // Viewmodel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+
+    // RoomDB
+    // Room components
+    implementation "androidx.room:room-ktx:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+    androidTestImplementation "androidx.room:room-testing:2.4.3"
 
     // test
     testImplementation "junit:junit:4.+"

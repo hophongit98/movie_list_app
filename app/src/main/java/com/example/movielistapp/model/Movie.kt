@@ -1,11 +1,16 @@
 package com.example.movielistapp.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 /**
  * Created by Phillip Truong
  * date 17/11/2022.
  */
+@Entity
 class Movie(
-    val id: String,
+    @PrimaryKey val id: String,
     val imageUrl: String,
     val movieName: String,
     val duration: Int,
