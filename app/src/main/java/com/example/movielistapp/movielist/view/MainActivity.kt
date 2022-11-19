@@ -25,10 +25,6 @@ class MainActivity : BaseActivity() {
         binding.rvMovieList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
             setHasFixedSize(true)
-            val movieListAdapter = MovieListAdapter {
-                viewModel.onItemSelected(it)
-            }
-            adapter = movieListAdapter
         }
 
         binding.tvSort.setOnClickListener {
@@ -52,7 +48,12 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun handleShowData(movie: List<MovieListContract.MovieDisplayableObject>) {
-        (binding.rvMovieList.adapter as MovieListAdapter).submitList(movie.toMutableList())
+    private fun handleShowData(movies: List<MovieListContract.MovieDisplayableObject>) {
+        (binding.rvMovieList).run {
+            val movieListAdapter = MovieListAdapter {
+                viewModel.onItemSelected(it)
+            }.apply { setData(movies) }
+            adapter = movieListAdapter
+        }
     }
 }

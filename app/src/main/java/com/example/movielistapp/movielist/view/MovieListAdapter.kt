@@ -1,23 +1,15 @@
 package com.example.movielistapp.movielist.view
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncDifferConfig
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movielistapp.model.Movie
 import com.example.movielistapp.movielist.MovieListContract.MovieDisplayableObject
-import java.util.concurrent.Executors
 
 /**
  * Created by Phillip Truong
  * date 16/11/2022.
  */
-class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Unit) :
-    ListAdapter<MovieDisplayableObject, MovieViewHolder>(
-        AsyncDifferConfig.Builder(MoviesComparator())
-            .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
-            .build()
-    ) {
+class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Unit) : RecyclerView.Adapter<MovieViewHolder>() {
 
     private val movieList = arrayListOf<MovieDisplayableObject>()
 
@@ -26,14 +18,18 @@ class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Uni
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        if (itemCount > position && position != RecyclerView.NO_POSITION) {
-            holder.build(movieList[position])
-        }
-    }
-
-    override fun submitList(list: MutableList<MovieDisplayableObject>?) {
-        super.submitList(list)
+        holder.build(movieList[position])
     }
 
     override fun getItemCount() = movieList.size
+
+    fun setData(newMovies: List<MovieDisplayableObject>) {
+        val diffResult = DiffUtil.calculateDiff(MoviesComparator(newMovies, movieList))
+        diffResult.dispatchUpdatesTo(this)
+
+        with(movieList) {
+            clear()
+            addAll(newMovies)
+        }
+    }
 }

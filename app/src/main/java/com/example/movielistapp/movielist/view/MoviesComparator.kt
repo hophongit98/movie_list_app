@@ -7,13 +7,17 @@ import com.example.movielistapp.movielist.MovieListContract
  * Created by Phillip Truong
  * date 16/11/2022.
  */
-class MoviesComparator : DiffUtil.ItemCallback<MovieListContract.MovieDisplayableObject>() {
+class MoviesComparator(private val newList: List<MovieListContract.MovieDisplayableObject>, private val oldList: List<MovieListContract.MovieDisplayableObject>) : DiffUtil.Callback() {
 
-    override fun areItemsTheSame(oldItem: MovieListContract.MovieDisplayableObject, newItem: MovieListContract.MovieDisplayableObject): Boolean {
-        return false
+    override fun getOldListSize(): Int = oldList.size
+
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return newList[newItemPosition].id ==  oldList[oldItemPosition].id
     }
 
-    override fun areContentsTheSame(oldItem: MovieListContract.MovieDisplayableObject, newItem: MovieListContract.MovieDisplayableObject): Boolean {
-        return oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return newList[newItemPosition] ==  oldList[oldItemPosition]
     }
 }

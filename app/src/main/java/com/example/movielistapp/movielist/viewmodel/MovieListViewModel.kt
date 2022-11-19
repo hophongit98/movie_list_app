@@ -18,16 +18,13 @@ import kotlinx.coroutines.launch
  * Created by Phillip Truong
  * date 17/11/2022.
  */
-class MovieListViewModel(private val movieRepository: MovieRepository) :
-    MovieListContract.ViewModel() {
+class MovieListViewModel(private val movieRepository: MovieRepository) : MovieListContract.ViewModel() {
 
     private var _isLoading = MutableLiveData<Boolean>()
     override val isLoading: LiveData<Boolean> = _isLoading
 
     private var _navigateToMovieDetail = MutableLiveData<String>()
     override val navigateToMovieDetail: LiveData<String> = _navigateToMovieDetail
-
-    private var _movieListLiveData = MutableLiveData<List<Movie>>()
 
     override fun onItemSelected(item: MovieDisplayableObject) {
         _navigateToMovieDetail.value = item.id
