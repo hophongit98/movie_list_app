@@ -1,6 +1,6 @@
 package com.example.movielistapp.utils
 
-import com.example.movielistapp.model.MovieType
+import com.example.movielistapp.model.Genre
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -37,7 +37,7 @@ class StringUtilsTest {
     @Test
     fun givenOneMovieType_whenConvertMovieTypesToString_thenReturnResultWithOnlyOneType() {
         // given
-        val movieType = MovieType.ACTION
+        val movieType = Genre.ACTION
 
         // when
         val result = StringUtils.convertMovieTypesToString(listOf(movieType))
@@ -49,7 +49,7 @@ class StringUtilsTest {
     @Test
     fun givenMovieTypeList_whenConvertMovieTypesToString_thenReturnResultWithListType() {
         // given
-        val movieTypes = listOf(MovieType.ACTION, MovieType.ADVENTURE)
+        val movieTypes = listOf(Genre.ACTION, Genre.ADVENTURE)
 
         // when
         val result = StringUtils.convertMovieTypesToString(movieTypes)

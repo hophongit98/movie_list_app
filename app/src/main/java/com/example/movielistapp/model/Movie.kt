@@ -1,6 +1,5 @@
 package com.example.movielistapp.model
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -13,13 +12,15 @@ class Movie(
     @PrimaryKey val id: String,
     val imageUrl: String,
     val movieName: String,
+    val shortDescription: String,
     val duration: Int,
-    val kind: List<MovieType>,
+    val kind: List<Genre>,
     val point: Float,
+    val releaseTime: Int,
     val isOnWatchList: Boolean
 )
 
-enum class MovieType(val type: String) {
+enum class Genre(val type: String) {
     ACTION("Action"),
     ADVENTURE("Adventure"),
     ANIMATION("Animation"),

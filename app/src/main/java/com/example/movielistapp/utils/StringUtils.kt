@@ -1,6 +1,6 @@
 package com.example.movielistapp.utils
 
-import com.example.movielistapp.model.MovieType
+import com.example.movielistapp.model.Genre
 
 /**
  * Created by Phillip Truong
@@ -16,11 +16,11 @@ object StringUtils {
         return result + if (mins > 0) "${mins}min" else ""
     }
 
-    fun convertMovieTypesToString(movieTypes: List<MovieType>): String {
+    fun convertMovieTypesToString(genres: List<Genre>): String {
         var str = ""
-        movieTypes.forEachIndexed { index, item ->
+        genres.forEachIndexed { index, item ->
             str += item.type
-            if (index != movieTypes.size - 1) str += ","
+            if (index != genres.size - 1) str += ","
         }
         return str
     }

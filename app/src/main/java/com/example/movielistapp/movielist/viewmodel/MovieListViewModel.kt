@@ -6,7 +6,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.movielistapp.MovieListApplication
 import com.example.movielistapp.model.Movie
-import com.example.movielistapp.model.MovieType
+import com.example.movielistapp.model.Genre
 import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.movielist.MovieListContract.MovieDisplayableObject
 import com.example.movielistapp.repository.MovieRepository
@@ -55,7 +55,7 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
         }
     }
 
-    private fun formatToShortDescription(duration: Int, types: List<MovieType>): String {
+    private fun formatToShortDescription(duration: Int, types: List<Genre>): String {
         return "${StringUtils.convertToHourAndMinutes(duration)}-${StringUtils.convertMovieTypesToString(types)}"
     }
 
