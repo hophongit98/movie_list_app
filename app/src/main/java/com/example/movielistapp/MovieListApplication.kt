@@ -16,4 +16,13 @@ class MovieListApplication : Application() {
     val repository by lazy { MovieRepository(
         MovieLocalDataSourceImpl(database.movieDao()), MovieRemoteDataSourceImpl(GetMovieListUseCaseImpl())
     ) }
+
+    companion object {
+        lateinit var instance: MovieListApplication
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+    }
 }

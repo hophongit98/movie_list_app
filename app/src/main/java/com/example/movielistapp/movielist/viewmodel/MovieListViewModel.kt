@@ -2,6 +2,7 @@ package com.example.movielistapp.movielist.viewmodel
 
 import androidx.lifecycle.*
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.movielistapp.MovieListApplication
@@ -50,7 +51,7 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
     private fun transformMovieListToDisplayableObjects(movies: List<Movie>): List<MovieDisplayableObject> {
         return movies.map {
             MovieDisplayableObject(
-                it.id, it.imageUrl, it.movieName, formatToShortDescription(it.duration, it.kind), it.isOnWatchList
+                it.id, it.imageUrl, it.movieName, formatToShortDescription(it.duration, it.genre), it.isOnWatchList
             )
         }
     }
@@ -60,10 +61,13 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
     }
 
     companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val myRepository = (this[APPLICATION_KEY] as MovieListApplication).repository
-                MovieListViewModel(myRepository)
+        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                if (modelClass.isAssignableFrom(MovieListViewModel::class.java)) {
+                    @Suppress("UNCHECKED_CAST")
+                    return MovieListViewModel(MovieListApplication.instance.repository) as T
+                }
+                throw IllegalArgumentException("Unknown ViewModel class")
             }
         }
     }

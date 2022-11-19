@@ -14,7 +14,7 @@ class Movie(
     val movieName: String,
     val shortDescription: String,
     val duration: Int,
-    val kind: List<Genre>,
+    val genre: List<Genre>,
     val point: Float,
     val releaseTime: Int,
     val isOnWatchList: Boolean
