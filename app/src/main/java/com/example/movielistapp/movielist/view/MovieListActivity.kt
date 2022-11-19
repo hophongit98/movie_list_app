@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
 import com.example.movielistapp.databinding.ActivityMovieListBinding
-import com.example.movielistapp.moviedetails.MovieDetailActivity
+import com.example.movielistapp.moviedetail.MovieDetailActivity
 import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.movielist.viewmodel.MovieListViewModel
 

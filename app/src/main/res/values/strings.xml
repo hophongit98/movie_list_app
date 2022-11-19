@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">MovieListapp</string>
-    <string name="main_sort">Sort</string>
-    <string name="main_movies">Movies</string>
-    <string name="on_my_watchlist">On my watchlist</string>
+    <string name="movie_list_sort">Sort</string>
+    <string name="movie_list_movies">Movies</string>
+    <string name="movie_list_on_my_watchlist">On my watchlist</string>
+    <string name="movie_detail_add_to_watchlist">+ Add to watchlist</string>
+    <string name="movie_detail_remove_from_watchlist">Remove from watchlist</string>
+    <string name="movie_detail_watch_trailer">Watch trailer</string>
+    <string name="movie_detail_per_10">/10</string>
+    <string name="movie_detail_short_description">Short Description</string>
+    <string name="movie_detail_details">Details</string>
+    <string name="movie_detail_genre">Genre</string>
+    <string name="movie_detail_released_date">Released date</string>
 
 </resources>
