@@ -1,11 +1,10 @@
 package com.example.movielistapp.repository
 
+import androidx.lifecycle.LiveData
 import com.example.movielistapp.model.Movie
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * Created by Phillip Truong
@@ -16,7 +15,7 @@ class MovieRepository(
     private val movieRemoteDataSource: MovieRemoteDataSource
 ) {
 
-    fun getLocalMovieList(): Flow<List<Movie>> {
+    fun getLocalMovieList(): LiveData<List<Movie>> {
         return movieLocalDataSource.getMovieList()
     }
 

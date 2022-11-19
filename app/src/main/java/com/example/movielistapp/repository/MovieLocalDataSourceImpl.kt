@@ -1,9 +1,9 @@
 package com.example.movielistapp.repository
 
+import androidx.lifecycle.LiveData
 import com.example.movielistapp.model.Movie
 import com.example.movielistapp.model.roomdatabase.MovieDao
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 /**
@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
  */
 class MovieLocalDataSourceImpl(private val movieDao: MovieDao) : MovieLocalDataSource {
 
-    override fun getMovieList(): Flow<List<Movie>> {
+    override fun getMovieList(): LiveData<List<Movie>> {
         return movieDao.getMovieList()
     }
 

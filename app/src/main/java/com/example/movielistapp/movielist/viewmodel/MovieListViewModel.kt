@@ -18,7 +18,8 @@ import kotlinx.coroutines.launch
  * Created by Phillip Truong
  * date 17/11/2022.
  */
-class MovieListViewModel(private val movieRepository: MovieRepository) : MovieListContract.ViewModel() {
+class MovieListViewModel(private val movieRepository: MovieRepository) :
+    MovieListContract.ViewModel() {
 
     private var _isLoading = MutableLiveData<Boolean>()
     override val isLoading: LiveData<Boolean> = _isLoading
@@ -28,36 +29,41 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
 
     private var _movieListLiveData = MutableLiveData<List<Movie>>()
 
-    private var _displayMovie: LiveData<List<MovieDisplayableObject>> = Transformations.map(_movieListLiveData) {
-        transformMovieListToDisplayableObjects(it)
-    }
-    override val displayMovie: LiveData<List<MovieDisplayableObject>> = _displayMovie
-
-    override fun getMoviesList() {
-        val movies = movieRepository.getLocalMovieList().asLiveData().value
-        if (movies.isNullOrEmpty()) {
-            viewModelScope.launch {
-                movieRepository.fetchRemoteMovieList()
-            }
-        } else {
-            _movieListLiveData.value = movies
-        }
-    }
-
     override fun onItemSelected(item: MovieDisplayableObject) {
         _navigateToMovieDetail.value = item.id
+    }
+
+    override fun getMovieList(): LiveData<List<MovieDisplayableObject>> {
+        return Transformations.map(movieRepository.getLocalMovieList()) { movies ->
+            if (movies.isNullOrEmpty()) {
+                viewModelScope.launch {
+                    movieRepository.fetchRemoteMovieList()
+                }
+                null
+            } else {
+                transformMovieListToDisplayableObjects(movies)
+            }
+        }
     }
 
     private fun transformMovieListToDisplayableObjects(movies: List<Movie>): List<MovieDisplayableObject> {
         return movies.map {
             MovieDisplayableObject(
-                it.id, it.imageUrl, it.movieName, formatToShortDescription(it.duration, it.genre), it.isOnWatchList
+                it.id,
+                it.imageUrl,
+                it.movieName,
+                formatToShortDescription(it.duration, it.genre),
+                it.isOnWatchList
             )
         }
     }
 
     private fun formatToShortDescription(duration: Int, types: List<Genre>): String {
-        return "${StringUtils.convertToHourAndMinutes(duration)}-${StringUtils.convertMovieTypesToString(types)}"
+        return "${StringUtils.convertToHourAndMinutes(duration)}-${
+            StringUtils.convertMovieTypesToString(
+                types
+            )
+        }"
     }
 
     companion object {

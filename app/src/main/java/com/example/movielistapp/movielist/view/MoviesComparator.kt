@@ -10,7 +10,7 @@ import com.example.movielistapp.movielist.MovieListContract
 class MoviesComparator : DiffUtil.ItemCallback<MovieListContract.MovieDisplayableObject>() {
 
     override fun areItemsTheSame(oldItem: MovieListContract.MovieDisplayableObject, newItem: MovieListContract.MovieDisplayableObject): Boolean {
-        return oldItem === newItem
+        return false
     }
 
     override fun areContentsTheSame(oldItem: MovieListContract.MovieDisplayableObject, newItem: MovieListContract.MovieDisplayableObject): Boolean {

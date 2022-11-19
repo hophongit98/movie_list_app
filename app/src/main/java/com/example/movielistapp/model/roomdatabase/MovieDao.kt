@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
 
     @Query("SELECT * FROM Movie")
-    fun getMovieList(): Flow<List<Movie>>
+    fun getMovieList(): LiveData<List<Movie>>
 
     @Query("SELECT * FROM Movie WHERE id=:id")
     fun getMovieById(id: String): Flow<Movie>

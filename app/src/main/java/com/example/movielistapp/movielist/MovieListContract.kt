@@ -15,10 +15,9 @@ interface MovieListContract {
 
     abstract class ViewModel : BaseViewModel(), Navigation {
         abstract val isLoading: LiveData<Boolean>
-        abstract val displayMovie: LiveData<List<MovieDisplayableObject>>
 
-        abstract fun getMoviesList()
         abstract fun onItemSelected(item: MovieDisplayableObject)
+        abstract fun getMovieList(): LiveData<List<MovieDisplayableObject>>
     }
 
     data class MovieDisplayableObject(

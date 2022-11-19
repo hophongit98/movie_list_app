@@ -1,15 +1,23 @@
 package com.example.movielistapp.movielist.view
 
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movielistapp.model.Movie
 import com.example.movielistapp.movielist.MovieListContract.MovieDisplayableObject
+import java.util.concurrent.Executors
 
 /**
  * Created by Phillip Truong
  * date 16/11/2022.
  */
-class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Unit) : ListAdapter<MovieDisplayableObject, MovieViewHolder>(MoviesComparator()) {
+class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Unit) :
+    ListAdapter<MovieDisplayableObject, MovieViewHolder>(
+        AsyncDifferConfig.Builder(MoviesComparator())
+            .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
+            .build()
+    ) {
 
     private val movieList = arrayListOf<MovieDisplayableObject>()
 
@@ -21,6 +29,10 @@ class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Uni
         if (itemCount > position && position != RecyclerView.NO_POSITION) {
             holder.build(movieList[position])
         }
+    }
+
+    override fun submitList(list: MutableList<MovieDisplayableObject>?) {
+        super.submitList(list)
     }
 
     override fun getItemCount() = movieList.size

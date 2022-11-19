@@ -3,6 +3,7 @@ package com.example.movielistapp.movielist.view
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
 import com.example.movielistapp.databinding.ActivityMainBinding
@@ -19,12 +20,11 @@ class MainActivity : BaseActivity() {
 
     override fun initialise() {
 
-        viewModel = ViewModelProvider(this, MovieListViewModel.Factory)[MovieListViewModel::class.java].also {
-            it.getMoviesList()
-        }
+        viewModel = ViewModelProvider(this, MovieListViewModel.Factory)[MovieListViewModel::class.java]
 
         binding.rvMovieList.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
+            setHasFixedSize(true)
             val movieListAdapter = MovieListAdapter {
                 viewModel.onItemSelected(it)
             }
@@ -47,12 +47,12 @@ class MainActivity : BaseActivity() {
                     MovieDetailActivity.start(this@MainActivity, it)
                 }
 
-                displayMovie.observe(this@MainActivity, ::handleShowData)
+                getMovieList().observe(this@MainActivity, ::handleShowData)
             }
         }
     }
 
     private fun handleShowData(movie: List<MovieListContract.MovieDisplayableObject>) {
-        (binding.rvMovieList.adapter as MovieListAdapter).submitList(movie)
+        (binding.rvMovieList.adapter as MovieListAdapter).submitList(movie.toMutableList())
     }
 }

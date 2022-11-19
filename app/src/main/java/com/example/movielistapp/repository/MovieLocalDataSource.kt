@@ -1,5 +1,6 @@
 package com.example.movielistapp.repository
 
+import androidx.lifecycle.LiveData
 import com.example.movielistapp.model.Movie
 import kotlinx.coroutines.flow.Flow
 
@@ -8,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
  * date 18/11/2022.
  */
 interface MovieLocalDataSource {
-    fun getMovieList() : Flow<List<Movie>>
+    fun getMovieList() : LiveData<List<Movie>>
     suspend fun insertMovieList(movies: List<Movie>)
 }
