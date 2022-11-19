@@ -6,16 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
-import com.example.movielistapp.databinding.ActivityMainBinding
+import com.example.movielistapp.databinding.ActivityMovieListBinding
 import com.example.movielistapp.moviedetails.MovieDetailActivity
 import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.movielist.viewmodel.MovieListViewModel
 
-class MainActivity : BaseActivity() {
+class MovieListActivity : BaseActivity() {
 
     private lateinit var viewModel: MovieListContract.ViewModel
     private val binding by lazy {
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        DataBindingUtil.setContentView<ActivityMovieListBinding>(this, R.layout.activity_movie_list)
     }
 
     override fun initialise() {
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
         viewModel = ViewModelProvider(this, MovieListViewModel.Factory)[MovieListViewModel::class.java]
 
         binding.rvMovieList.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
+            layoutManager = LinearLayoutManager(this@MovieListActivity, RecyclerView.VERTICAL, false)
             setHasFixedSize(true)
         }
 
@@ -35,15 +35,15 @@ class MainActivity : BaseActivity() {
     override fun observeViewModel() {
         if (viewModel is MovieListViewModel) {
             with(viewModel) {
-                isLoading.observe(this@MainActivity) {
+                isLoading.observe(this@MovieListActivity) {
 
                 }
 
-                navigateToMovieDetail.observe(this@MainActivity) {
-                    MovieDetailActivity.start(this@MainActivity, it)
+                navigateToMovieDetail.observe(this@MovieListActivity) {
+                    MovieDetailActivity.start(this@MovieListActivity, it)
                 }
 
-                getMovieList().observe(this@MainActivity, ::handleShowData)
+                getMovieList().observe(this@MovieListActivity, ::handleShowData)
             }
         }
     }

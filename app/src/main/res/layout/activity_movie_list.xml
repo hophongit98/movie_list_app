@@ -10,7 +10,7 @@
         android:paddingTop="10dp"
         android:paddingEnd="20dp"
         android:paddingBottom="10dp"
-        tools:context=".movielist.view.MainActivity">
+        tools:context=".movielist.view.MovieListActivity">
 
         <TextView
             android:id="@+id/tvSort"

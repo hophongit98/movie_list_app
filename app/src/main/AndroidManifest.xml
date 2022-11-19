@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieListApp">
         <activity
-            android:name=".movielist.view.MainActivity"
+            android:name=".movielist.view.MovieListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
