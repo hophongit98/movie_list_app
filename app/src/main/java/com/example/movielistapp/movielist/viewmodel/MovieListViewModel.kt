@@ -44,11 +44,15 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
             MovieItemDisplayableObject(
                 it.id,
                 it.imageUrl,
-                it.movieName,
+                formatMovieNameAndReleasedYear(it.movieName, it.releaseTime),
                 formatToShortDescription(it.duration, it.genre),
                 it.isOnWatchList
             )
         }
+    }
+
+    private fun formatMovieNameAndReleasedYear(name: String, releasedTime: Int): String {
+        return "$name (${StringUtils.formatStringYYYY(releasedTime)})"
     }
 
     private fun formatToShortDescription(duration: Int, types: List<Genre>): String {

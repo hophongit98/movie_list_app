@@ -11,6 +11,7 @@ import java.util.*
 object StringUtils {
 
     private const val YYYYDMMMM = "yyyy, d MMMM"
+    private const val YYYY = "yyyy"
 
     fun convertToHourAndMinutes(seconds: Int): String {
         var result = ""
@@ -31,5 +32,9 @@ object StringUtils {
 
     fun formatStringYYYYDMMM(time: Int): String {
         return SimpleDateFormat(YYYYDMMMM).format(Date(time * 1000L))
+    }
+
+    fun formatStringYYYY(time: Int): String {
+        return SimpleDateFormat(YYYY).format(Date(time * 1000L))
     }
 }

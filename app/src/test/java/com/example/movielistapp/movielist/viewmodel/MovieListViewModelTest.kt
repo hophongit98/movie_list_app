@@ -7,7 +7,6 @@ import com.example.movielistapp.model.Genre
 import com.example.movielistapp.model.Movie
 import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.repository.MovieRepository
-import com.example.movielistapp.usecase.getmovielistusecase.GetMovieListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
@@ -65,7 +64,7 @@ class MovieListViewModelTest : ViewModelTestBase() {
         val movies = listOf(
             Movie(
                 "1", "imageUrl", "Movie Name", "ShortDescription",
-                7020, listOf(Genre.ACTION), 8.0f, 13456789, false
+                7020, listOf(Genre.ACTION), 8.0f, 1599091200, false
             )
         )
         whenever(repository.getLocalMovieList()).thenReturn(MutableLiveData(movies))
@@ -81,7 +80,7 @@ class MovieListViewModelTest : ViewModelTestBase() {
         with(movie) {
             assertEquals("1", id)
             assertEquals("imageUrl", imageUrl)
-            assertEquals("Movie Name", movieName)
+            assertEquals("Movie Name (2020)", movieName)
             assertEquals("1h57min-Action", shortDescription)
             assertFalse(isOnWatchList)
         }
