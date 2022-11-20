@@ -63,4 +63,13 @@ class MovieRepositoryTest {
         // then
         verify(movieRemoteDataSource).fetchRemoteMovieList(any())
     }
+
+    @Test
+    fun whenUpdateIsOnWatchList_thenMovieLocalDataSourceHandle(): Unit = runBlocking {
+        // when
+        repository.updateIsOnWatchList(true, "213")
+
+        // then
+        verify(movieLocalDataSource).updateIsOnWatchList(true, "213")
+    }
 }

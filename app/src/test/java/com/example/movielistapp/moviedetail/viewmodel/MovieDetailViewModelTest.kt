@@ -11,12 +11,13 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 /**
@@ -43,7 +44,7 @@ class MovieDetailViewModelTest : ViewModelTestBase() {
     }
 
     @Test
-    fun giveMovieId_whenGetMovieDetail_returnMovieDisplayableObject(): Unit = runBlocking {
+    fun giveNMovieId_whenGetMovieDetail_returnMovieDisplayableObject(): Unit = runBlocking {
         // given
         val movieId = "123"
         whenever(repository.getMovieDetail(movieId)).thenReturn(
@@ -71,4 +72,39 @@ class MovieDetailViewModelTest : ViewModelTestBase() {
         }
     }
 
+    @Test
+    fun givenId_whenAddToWatchListClicked_thenUpdateDatabaseWithCorrectData() {
+        // given
+        viewModel.getMovieDetail(id = "123")
+
+        // when
+        viewModel.onAddToWatchList()
+
+        // then
+        val booleanArgumentCaptor = argumentCaptor<Boolean>()
+        val stringArgumentCaptor = argumentCaptor<String>()
+        runBlocking {
+            verify(repository).updateIsOnWatchList(booleanArgumentCaptor.capture(), stringArgumentCaptor.capture())
+            assertEquals("123", stringArgumentCaptor.firstValue)
+            assertTrue(booleanArgumentCaptor.firstValue)
+        }
+    }
+
+    @Test
+    fun givenId_whenRemoveFromWatchListClicked_thenUpdateDatabaseWithCorrectData() {
+        // given
+        viewModel.getMovieDetail(id = "123")
+
+        // when
+        viewModel.onRemoveFromWatchList()
+
+        // then
+        val booleanArgumentCaptor = argumentCaptor<Boolean>()
+        val stringArgumentCaptor = argumentCaptor<String>()
+        runBlocking {
+            verify(repository).updateIsOnWatchList(booleanArgumentCaptor.capture(), stringArgumentCaptor.capture())
+            assertEquals("123", stringArgumentCaptor.firstValue)
+            assertFalse(booleanArgumentCaptor.firstValue)
+        }
+    }
 }

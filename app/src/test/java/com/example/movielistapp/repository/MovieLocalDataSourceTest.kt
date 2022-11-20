@@ -44,6 +44,12 @@ class MovieLocalDataSourceTest {
     }
 
     @Test
+    fun updateIsOnWatchListTest(): Unit = runBlocking {
+        localDataSource.updateIsOnWatchList(true, "id")
+        verify(movieDao).updateIsOnWatchList(true, "id")
+    }
+
+    @Test
     fun givenMovieId_whenGetMovieById_thenReturnMovieDetail(): Unit = runBlocking {
         // given
         val id = "123"
