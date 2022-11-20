@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Before
@@ -32,13 +33,16 @@ class MovieListViewModelTest : ViewModelTestBase() {
     @Mock
     lateinit var repository: MovieRepository
 
-    @Mock
-    lateinit var getMovieListUseCase: GetMovieListUseCase
-
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
         viewModel = MovieListViewModel(repository)
+        Dispatchers.setMain(Dispatchers.Unconfined)
+    }
+
+    @After
+    fun teardown() {
+        Dispatchers.resetMain()
     }
 
     @Test
@@ -86,7 +90,6 @@ class MovieListViewModelTest : ViewModelTestBase() {
     @Test
     fun givenGetLocalMovieListEmpty_whenGetMovieList_thenFetchMovieListFromRemote() {
         // given
-        Dispatchers.setMain(Dispatchers.Unconfined)
         val movies = emptyList<Movie>()
         whenever(repository.getLocalMovieList()).thenReturn(MutableLiveData(movies))
         val navigateObserver = LiveDataObserverTest(viewModel.getMovieList())
@@ -98,6 +101,6 @@ class MovieListViewModelTest : ViewModelTestBase() {
         runBlocking {
             verify(repository).fetchRemoteMovieList()
         }
-        Dispatchers.resetMain()
+
     }
 }
