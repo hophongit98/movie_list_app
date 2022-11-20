@@ -52,11 +52,7 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
     }
 
     private fun formatToShortDescription(duration: Int, types: List<Genre>): String {
-        return "${StringUtils.convertToHourAndMinutes(duration)}-${
-            StringUtils.convertMovieTypesToString(
-                types
-            )
-        }"
+        return "${StringUtils.convertToHourAndMinutes(duration)}-${StringUtils.convertMovieTypesToString(types)}"
     }
 
     companion object {
