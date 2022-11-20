@@ -9,7 +9,7 @@ import com.example.movielistapp.model.Genre
  */
 object DataProvider {
 
-    private const val SHORT_DESCRIPTION = "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time"
+    const val SHORT_DESCRIPTION = "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time"
 
     fun dummyData(): List<Movie> {
         return listOf(
@@ -46,7 +46,7 @@ object DataProvider {
         )
     }
 
-    private fun mockMovie(
+    fun mockMovie(
         id: String,
         imageUrl: String,
         movieName: String,
