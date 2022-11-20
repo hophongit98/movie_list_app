@@ -3,15 +3,15 @@ package com.example.movielistapp.movielist.view
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movielistapp.movielist.MovieListContract.MovieDisplayableObject
+import com.example.movielistapp.movielist.MovieListContract.MovieItemDisplayableObject
 
 /**
  * Created by Phillip Truong
  * date 16/11/2022.
  */
-class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Unit) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieListAdapter(private val itemSelected: (MovieItemDisplayableObject) -> Unit) : RecyclerView.Adapter<MovieViewHolder>() {
 
-    private val movieList = arrayListOf<MovieDisplayableObject>()
+    private val movieList = arrayListOf<MovieItemDisplayableObject>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder.create(parent, itemSelected)
@@ -23,13 +23,13 @@ class MovieListAdapter(private val itemSelected: (MovieDisplayableObject) -> Uni
 
     override fun getItemCount() = movieList.size
 
-    fun setData(newMovies: List<MovieDisplayableObject>) {
-        val diffResult = DiffUtil.calculateDiff(MoviesComparator(newMovies, movieList))
+    fun setData(newMovieItems: List<MovieItemDisplayableObject>) {
+        val diffResult = DiffUtil.calculateDiff(MoviesComparator(newMovieItems, movieList))
         diffResult.dispatchUpdatesTo(this)
 
         with(movieList) {
             clear()
-            addAll(newMovies)
+            addAll(newMovieItems)
         }
     }
 }

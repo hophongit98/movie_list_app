@@ -14,7 +14,7 @@
 
             <ImageView
                 android:id="@+id/ivImage"
-                android:layout_width="120dp"
+                android:layout_width="110dp"
                 android:layout_height="200dp"
                 android:layout_marginBottom="20dp"
                 android:background="@color/black"
@@ -67,11 +67,11 @@
                 android:id="@+id/btnAddToWatchList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/movie_detail_remove_from_watchlist"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="15dp"
+                tools:text="@string/movie_detail_add_to_watchlist"
                 app:layout_constraintBottom_toTopOf="@id/btnWatchTrailer"
-                app:layout_constraintStart_toStartOf="@id/tvMovieName"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivImage"
                 app:layout_constraintTop_toBottomOf="@+id/tvMovieName" />
 
             <Button
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="@string/movie_detail_watch_trailer"
-                app:layout_constraintStart_toStartOf="@+id/tvMovieName"
+                app:layout_constraintStart_toStartOf="@+id/btnAddToWatchList"
                 app:layout_constraintTop_toBottomOf="@+id/btnAddToWatchList" />
 
             <androidx.constraintlayout.widget.Barrier

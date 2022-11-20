@@ -1,15 +1,11 @@
 package com.example.movielistapp.movielist.viewmodel
 
 import androidx.lifecycle.*
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewmodel.CreationExtras
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.movielistapp.MovieListApplication
 import com.example.movielistapp.model.Movie
 import com.example.movielistapp.model.Genre
 import com.example.movielistapp.movielist.MovieListContract
-import com.example.movielistapp.movielist.MovieListContract.MovieDisplayableObject
+import com.example.movielistapp.movielist.MovieListContract.MovieItemDisplayableObject
 import com.example.movielistapp.repository.MovieRepository
 import com.example.movielistapp.utils.StringUtils
 import kotlinx.coroutines.launch
@@ -26,11 +22,11 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
     private var _navigateToMovieDetail = MutableLiveData<String>()
     override val navigateToMovieDetail: LiveData<String> = _navigateToMovieDetail
 
-    override fun onItemSelected(item: MovieDisplayableObject) {
+    override fun onItemSelected(item: MovieItemDisplayableObject) {
         _navigateToMovieDetail.value = item.id
     }
 
-    override fun getMovieList(): LiveData<List<MovieDisplayableObject>> {
+    override fun getMovieList(): LiveData<List<MovieItemDisplayableObject>> {
         return Transformations.map(movieRepository.getLocalMovieList()) { movies ->
             if (movies.isNullOrEmpty()) {
                 viewModelScope.launch {
@@ -43,9 +39,9 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
         }
     }
 
-    private fun transformMovieListToDisplayableObjects(movies: List<Movie>): List<MovieDisplayableObject> {
+    private fun transformMovieListToDisplayableObjects(movies: List<Movie>): List<MovieItemDisplayableObject> {
         return movies.map {
-            MovieDisplayableObject(
+            MovieItemDisplayableObject(
                 it.id,
                 it.imageUrl,
                 it.movieName,

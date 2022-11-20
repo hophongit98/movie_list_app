@@ -7,7 +7,7 @@ import com.example.movielistapp.movielist.MovieListContract
  * Created by Phillip Truong
  * date 16/11/2022.
  */
-class MoviesComparator(private val newList: List<MovieListContract.MovieDisplayableObject>, private val oldList: List<MovieListContract.MovieDisplayableObject>) : DiffUtil.Callback() {
+class MoviesComparator(private val newList: List<MovieListContract.MovieItemDisplayableObject>, private val oldList: List<MovieListContract.MovieItemDisplayableObject>) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldList.size
 

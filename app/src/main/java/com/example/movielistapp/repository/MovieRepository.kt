@@ -33,4 +33,8 @@ class MovieRepository(
     suspend fun insertMovieList(movies: List<Movie>) {
         movieLocalDataSource.insertMovieList(movies)
     }
+
+    suspend fun getMovieDetail(id: String): Movie {
+        TODO("Not yet implemented")
+    }
 }
