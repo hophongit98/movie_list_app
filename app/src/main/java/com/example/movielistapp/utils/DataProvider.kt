@@ -15,13 +15,13 @@ object DataProvider {
         return listOf(
             mockMovie(
                 id = "1", imageUrl = "", movieName = "Tenet",
-                duration = 7020, genre = listOf(Genre.ACTION, Genre.ANIMATION, Genre.ADVENTURE),
+                duration = 4800, genre = listOf(Genre.ACTION, Genre.SCIFI),
                 point = 7.8f, releasedTime = 1599091200,
                 shortDescription = SHORT_DESCRIPTION
             ),
             mockMovie(
                 id = "2", imageUrl = "", movieName = "Spider-Man: Into the Spider-Verse",
-                duration = 4800, genre = listOf(Genre.ACTION, Genre.SCIFI),
+                duration = 7020, genre = listOf(Genre.ACTION, Genre.ANIMATION, Genre.ADVENTURE),
                 point = 8.0f, releasedTime = 1538352000,
                 shortDescription = SHORT_DESCRIPTION
             ),

@@ -55,7 +55,7 @@ class StringUtilsTest {
         val result = StringUtils.convertMovieTypesToString(movieTypes)
 
         // then
-        assertEquals("Action,Adventure", result)
+        assertEquals("Action, Adventure", result)
     }
 
     @Test

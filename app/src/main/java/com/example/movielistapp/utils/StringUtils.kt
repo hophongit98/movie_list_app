@@ -25,7 +25,7 @@ object StringUtils {
         var str = ""
         genres.forEachIndexed { index, item ->
             str += item.type
-            if (index != genres.size - 1) str += ","
+            if (index != genres.size - 1) str += ", "
         }
         return str
     }

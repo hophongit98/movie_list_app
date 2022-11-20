@@ -81,7 +81,7 @@ class MovieListViewModelTest : ViewModelTestBase() {
             assertEquals("1", id)
             assertEquals("imageUrl", imageUrl)
             assertEquals("Movie Name (2020)", movieName)
-            assertEquals("1h57min-Action", shortDescription)
+            assertEquals("1h57min - Action", shortDescription)
             assertFalse(isOnWatchList)
         }
     }

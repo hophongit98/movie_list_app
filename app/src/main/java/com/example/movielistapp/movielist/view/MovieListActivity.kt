@@ -3,6 +3,7 @@ package com.example.movielistapp.movielist.view
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielistapp.R
@@ -29,8 +30,8 @@ class MovieListActivity : BaseActivity() {
         viewModel = ViewModelProvider(this, MovieListViewModel.Factory)[MovieListViewModel::class.java]
 
         binding.rvMovieList.apply {
-            layoutManager =
-                LinearLayoutManager(this@MovieListActivity, RecyclerView.VERTICAL, false)
+            layoutManager = LinearLayoutManager(this@MovieListActivity, RecyclerView.VERTICAL, false)
+            addItemDecoration(DividerItemDecoration(this@MovieListActivity, RecyclerView.VERTICAL))
             setHasFixedSize(true)
         }
     }
