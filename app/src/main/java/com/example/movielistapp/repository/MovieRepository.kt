@@ -38,4 +38,8 @@ class MovieRepository(
     suspend fun getMovieDetail(id: String): Movie {
         return movieLocalDataSource.getMovieDetail(id)
     }
+
+    suspend fun updateIsOnWatchList(isOnWatchList: Boolean, id: String) {
+        return movieLocalDataSource.updateIsOnWatchList(isOnWatchList, id)
+    }
 }

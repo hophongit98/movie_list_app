@@ -12,4 +12,5 @@ interface MovieLocalDataSource {
     fun getMovieList() : LiveData<List<Movie>>
     suspend fun insertMovieList(movies: List<Movie>)
     suspend fun getMovieDetail(id: String): Movie
+    suspend fun updateIsOnWatchList(isOnWatchList: Boolean, id: String)
 }

@@ -3,12 +3,12 @@ package com.example.movielistapp.moviedetail.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
 import com.example.movielistapp.databinding.ActivityMovieDetailBinding
@@ -41,6 +41,16 @@ class MovieDetailActivity : BaseActivity() {
             intent.getStringExtra(MOVIE_ID)?.let { viewModel.getMovieDetail(it) }
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail)
+
+        binding.btnAddToWatchList.setOnClickListener {
+            viewModel.onAddToWatchList()
+            updateButtonsVisible(btnAttClicked = true)
+        }
+
+        binding.btnRemoveFromWatchList.setOnClickListener {
+            viewModel.onRemoveFromWatchList()
+            updateButtonsVisible(btnAttClicked = false)
+        }
     }
 
     override fun observeViewModel() {
@@ -56,6 +66,11 @@ class MovieDetailActivity : BaseActivity() {
         return true
     }
 
+    private fun updateButtonsVisible(btnAttClicked: Boolean) {
+        binding.btnAddToWatchList.isVisible = !btnAttClicked
+        binding.btnRemoveFromWatchList.isVisible = btnAttClicked
+    }
+
     private fun updateUI(movie: MovieDetailContract.MovieDetailDisplayableObject) {
         with(binding) {
             tvMovieName.text = movie.movieName
@@ -63,7 +78,13 @@ class MovieDetailActivity : BaseActivity() {
             tvShortDescription.text = movie.shortDescription
             tvGenre.text = StringUtils.convertMovieTypesToString(movie.genre)
             tvReleasedDate.text = StringUtils.formatStringYYYYDMMM(movie.releasedDate)
-            btnAddToWatchList.text = if (!movie.isOnWatchList) getString(R.string.movie_detail_add_to_watchlist) else getString(R.string.movie_detail_remove_from_watchlist)
+            if (movie.isOnWatchList) {
+                btnAddToWatchList.isVisible = false
+                btnRemoveFromWatchList.isVisible = true
+            } else {
+                btnAddToWatchList.isVisible = true
+                btnRemoveFromWatchList.isVisible = false
+            }
             Glide.with(this@MovieDetailActivity)
                 .load(resources.getIdentifier(movie.imageUrl, "drawable", this@MovieDetailActivity.packageName))
                 .placeholder(R.drawable.ic_priority_high)

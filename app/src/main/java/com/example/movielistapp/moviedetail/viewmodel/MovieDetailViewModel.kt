@@ -23,7 +23,10 @@ class MovieDetailViewModel(private val repository: MovieRepository) : MovieDetai
     private var _navigateToMovieList = MutableLiveData<Unit>()
     override val navigateToMovieList: LiveData<Unit> = _navigateToMovieList
 
+    private var movieId = ""
+
     override fun getMovieDetail(id: String) {
+        movieId = id
         viewModelScope.launch {
             val movieDo = mapToMovieDetailDisplayableObject(repository.getMovieDetail(id))
             _movieDetail.value = movieDo
@@ -31,11 +34,15 @@ class MovieDetailViewModel(private val repository: MovieRepository) : MovieDetai
     }
 
     override fun onAddToWatchList() {
-        TODO("Not yet implemented")
+        viewModelScope.launch {
+            repository.updateIsOnWatchList(true, movieId)
+        }
     }
 
     override fun onRemoveFromWatchList() {
-        TODO("Not yet implemented")
+        viewModelScope.launch {
+            repository.updateIsOnWatchList(false, movieId)
+        }
     }
 
     private fun mapToMovieDetailDisplayableObject(movie: Movie): MovieDetailContract.MovieDetailDisplayableObject {

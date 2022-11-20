@@ -27,4 +27,10 @@ class MovieLocalDataSourceImpl(private val movieDao: MovieDao) : MovieLocalDataS
             movieDao.getMovieById(id)
         }
     }
+
+    override suspend fun updateIsOnWatchList(isOnWatchList: Boolean, id: String) {
+        return withContext(Dispatchers.IO) {
+            movieDao.updateIsOnWatchList(isOnWatchList, id)
+        }
+    }
 }

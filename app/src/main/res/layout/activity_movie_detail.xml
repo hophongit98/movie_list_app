@@ -34,7 +34,7 @@
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/btnAddToWatchList"
+                app:layout_constraintBottom_toTopOf="@id/barrierTopForTwoButtons"
                 app:layout_constraintEnd_toStartOf="@id/tvPoint"
                 app:layout_constraintStart_toEndOf="@id/ivImage"
                 app:layout_constraintTop_toTopOf="@+id/ivImage"
@@ -62,25 +62,54 @@
                 app:layout_constraintBottom_toBottomOf="@id/tvPoint"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierTopForTwoButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="top"
+                app:constraint_referenced_ids="btnAddToWatchList, btnRemoveFromWatchList" />
+
             <Button
                 android:id="@+id/btnAddToWatchList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="25dp"
-                app:layout_constraintBottom_toTopOf="@id/btnWatchTrailer"
+                android:text="@string/movie_detail_add_to_watchlist"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/barrierBottomForTwoButtons"
                 app:layout_constraintStart_toEndOf="@id/ivImage"
                 app:layout_constraintTop_toBottomOf="@+id/tvMovieName"
-                tools:text="@string/movie_detail_add_to_watchlist" />
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnRemoveFromWatchList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/movie_detail_remove_from_watchlist"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/btnWatchTrailer"
+                app:layout_constraintStart_toEndOf="@id/ivImage"
+                app:layout_constraintTop_toBottomOf="@+id/tvMovieName" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierBottomForTwoButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="btnAddToWatchList, btnRemoveFromWatchList" />
 
             <Button
                 android:id="@+id/btnWatchTrailer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/movie_detail_watch_trailer"
-                app:layout_constraintStart_toStartOf="@+id/btnAddToWatchList"
-                app:layout_constraintTop_toBottomOf="@+id/btnAddToWatchList" />
+                app:layout_constraintStart_toEndOf="@id/ivImage"
+                app:layout_constraintTop_toBottomOf="@+id/barrierBottomForTwoButtons" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier"
