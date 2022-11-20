@@ -1,5 +1,6 @@
 package com.example.movielistapp.movielist.view
 
+import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,11 @@ class MovieListActivity : BaseActivity() {
 
     private lateinit var viewModel: MovieListContract.ViewModel
     private lateinit var binding: ActivityMovieListBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
+    }
 
     override fun initialise() {
 

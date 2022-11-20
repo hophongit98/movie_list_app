@@ -2,6 +2,7 @@ package com.example.movielistapp.moviedetail.view
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.movielistapp.R
@@ -21,6 +22,15 @@ class MovieDetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMovieDetailBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        supportActionBar?.let {
+            it.title = getString(R.string.movie_list_movies)
+            it.setHomeAsUpIndicator(R.drawable.ic_back)
+            it.setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
     override fun initialise() {
         super.initialise()
         viewModel = ViewModelProvider(this, MovieDetailViewModel.Factory)[MovieDetailViewModel::class.java].also {  viewModel ->
@@ -35,6 +45,11 @@ class MovieDetailActivity : BaseActivity() {
                 updateUI(movie)
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun updateUI(movie: MovieDetailContract.MovieDetailDisplayableObject) {
