@@ -1,10 +1,10 @@
 package com.example.movielistapp.moviedetail.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.movielistapp.MovieListApplication
 import com.example.movielistapp.model.Movie
 import com.example.movielistapp.moviedetail.MovieDetailContract
+import com.example.movielistapp.movielist.viewmodel.MovieListViewModel
 import com.example.movielistapp.repository.MovieRepository
 import kotlinx.coroutines.launch
 
@@ -48,5 +48,17 @@ class MovieDetailViewModel(private val repository: MovieRepository) : MovieDetai
             releasedDate = movie.releaseTime,
             isOnWatchList = movie.isOnWatchList
         )
+    }
+
+    companion object {
+        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                if (modelClass.isAssignableFrom(MovieDetailViewModel::class.java)) {
+                    @Suppress("UNCHECKED_CAST")
+                    return MovieDetailViewModel(MovieListApplication.instance.repository) as T
+                }
+                throw IllegalArgumentException("Unknown ViewModel class")
+            }
+        }
     }
 }

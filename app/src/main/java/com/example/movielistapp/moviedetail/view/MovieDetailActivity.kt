@@ -23,7 +23,7 @@ class MovieDetailActivity : BaseActivity() {
 
     override fun initialise() {
         super.initialise()
-        viewModel = ViewModelProvider(this)[MovieDetailViewModel::class.java].also {  viewModel ->
+        viewModel = ViewModelProvider(this, MovieDetailViewModel.Factory)[MovieDetailViewModel::class.java].also {  viewModel ->
             intent.getStringExtra(MOVIE_ID)?.let { viewModel.getMovieDetail(it) }
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail)
@@ -44,6 +44,7 @@ class MovieDetailActivity : BaseActivity() {
             tvShortDescription.text = movie.shortDescription
             tvGenre.text = StringUtils.convertMovieTypesToString(movie.genre)
             tvReleasedDate.text = StringUtils.convertToHourAndMinutes(movie.releasedDate)
+            btnAddToWatchList.text = if (!movie.isOnWatchList) getString(R.string.movie_detail_add_to_watchlist) else getString(R.string.movie_detail_remove_from_watchlist)
         }
     }
 

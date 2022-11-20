@@ -5,6 +5,7 @@ import com.example.movielistapp.model.Movie
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * Created by Phillip Truong
@@ -35,6 +36,6 @@ class MovieRepository(
     }
 
     suspend fun getMovieDetail(id: String): Movie {
-        TODO("Not yet implemented")
+        return movieLocalDataSource.getMovieDetail(id)
     }
 }

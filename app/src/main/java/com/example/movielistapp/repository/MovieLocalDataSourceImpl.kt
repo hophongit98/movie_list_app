@@ -21,4 +21,10 @@ class MovieLocalDataSourceImpl(private val movieDao: MovieDao) : MovieLocalDataS
             movieDao.insertMovieList(movies)
         }
     }
+
+    override suspend fun getMovieDetail(id: String): Movie {
+        return withContext(Dispatchers.IO) {
+            movieDao.getMovieById(id)
+        }
+    }
 }

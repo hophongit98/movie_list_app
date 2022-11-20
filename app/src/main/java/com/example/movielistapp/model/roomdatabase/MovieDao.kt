@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.IGNORE
 import androidx.room.Query
 import com.example.movielistapp.model.Movie
-import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Phillip Truong
@@ -19,7 +18,7 @@ interface MovieDao {
     fun getMovieList(): LiveData<List<Movie>>
 
     @Query("SELECT * FROM Movie WHERE id=:id")
-    fun getMovieById(id: String): Flow<Movie>
+    fun getMovieById(id: String): Movie
 
     @Insert(onConflict = IGNORE)
     suspend fun insertMovieList(movies: List<Movie>)

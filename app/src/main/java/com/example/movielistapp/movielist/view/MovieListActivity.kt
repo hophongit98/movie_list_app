@@ -18,16 +18,15 @@ class MovieListActivity : BaseActivity() {
 
     override fun initialise() {
 
-        viewModel =
-            ViewModelProvider(this, MovieListViewModel.Factory)[MovieListViewModel::class.java]
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_list)
+
+        viewModel = ViewModelProvider(this, MovieListViewModel.Factory)[MovieListViewModel::class.java]
 
         binding.rvMovieList.apply {
             layoutManager =
                 LinearLayoutManager(this@MovieListActivity, RecyclerView.VERTICAL, false)
             setHasFixedSize(true)
         }
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_list)
     }
 
     override fun observeViewModel() {
