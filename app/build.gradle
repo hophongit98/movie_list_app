@@ -8,7 +8,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.colorwheelpicker"
+        applicationId "com.example.movielistapp"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -69,6 +69,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     androidTestImplementation "androidx.room:room-testing:2.4.3"
 
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     // test
     testImplementation "junit:junit:4.+"

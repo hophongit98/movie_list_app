@@ -52,7 +52,8 @@ class MovieListActivity : BaseActivity() {
         }
     }
 
-    private fun handleShowData(movieItems: List<MovieListContract.MovieItemDisplayableObject>) {
+    private fun handleShowData(movieItems: List<MovieListContract.MovieItemDisplayableObject>?) {
+        if (movieItems == null) return
         (binding.rvMovieList).run {
             val movieListAdapter = MovieListAdapter {
                 viewModel.onItemSelected(it)

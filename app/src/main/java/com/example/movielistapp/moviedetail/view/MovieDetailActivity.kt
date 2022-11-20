@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
 import com.example.movielistapp.databinding.ActivityMovieDetailBinding
@@ -60,6 +61,11 @@ class MovieDetailActivity : BaseActivity() {
             tvGenre.text = StringUtils.convertMovieTypesToString(movie.genre)
             tvReleasedDate.text = StringUtils.formatStringYYYYDMMM(movie.releasedDate)
             btnAddToWatchList.text = if (!movie.isOnWatchList) getString(R.string.movie_detail_add_to_watchlist) else getString(R.string.movie_detail_remove_from_watchlist)
+            Glide.with(this@MovieDetailActivity)
+                .load(resources.getIdentifier(movie.imageUrl, "drawable", this@MovieDetailActivity.packageName))
+                .placeholder(R.drawable.ic_priority_high)
+                .centerCrop()
+                .into(ivImage)
         }
     }
 

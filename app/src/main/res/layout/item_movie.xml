@@ -13,7 +13,6 @@
         android:id="@+id/ivPoster"
         android:layout_width="100dp"
         android:layout_height="140dp"
-        android:background="@color/black"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintStart_toStartOf="parent"
