@@ -1,15 +1,18 @@
 package com.example.movielistapp.movielist.view
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.RoundedCorner
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.movielistapp.MovieListApplication
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.movielistapp.R
 import com.example.movielistapp.databinding.ItemMovieBinding
 import com.example.movielistapp.movielist.MovieListContract.MovieItemDisplayableObject
+
 
 /**
  * Created by Phillip Truong
@@ -24,7 +27,7 @@ class MovieViewHolder(private val binding: ItemMovieBinding, private val itemSel
             tvOnMyWatchList.visibility = if (item.isOnWatchList) View.VISIBLE else View.GONE
             Glide.with(itemView)
                 .load(itemView.resources.getIdentifier(item.imageUrl, "drawable", itemView.context.packageName))
-                .centerCrop()
+                .transform(CenterCrop(), RoundedCorners(15))
                 .placeholder(R.drawable.ic_priority_high)
                 .into(ivPoster)
         }

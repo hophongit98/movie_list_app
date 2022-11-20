@@ -17,7 +17,6 @@
                 android:layout_width="110dp"
                 android:layout_height="200dp"
                 android:layout_marginBottom="20dp"
-                android:background="@color/black"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -67,12 +66,12 @@
                 android:id="@+id/btnAddToWatchList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
                 android:layout_marginStart="15dp"
-                tools:text="@string/movie_detail_add_to_watchlist"
+                android:layout_marginTop="25dp"
                 app:layout_constraintBottom_toTopOf="@id/btnWatchTrailer"
                 app:layout_constraintStart_toEndOf="@id/ivImage"
-                app:layout_constraintTop_toBottomOf="@+id/tvMovieName" />
+                app:layout_constraintTop_toBottomOf="@+id/tvMovieName"
+                tools:text="@string/movie_detail_add_to_watchlist" />
 
             <Button
                 android:id="@+id/btnWatchTrailer"
@@ -88,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="btnWatchTrailer, ivImage"/>
+                app:constraint_referenced_ids="btnWatchTrailer, ivImage" />
 
             <View
                 android:id="@+id/firstViewHorizontal"

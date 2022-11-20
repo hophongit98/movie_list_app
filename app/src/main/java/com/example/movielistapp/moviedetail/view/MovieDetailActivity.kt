@@ -6,6 +6,9 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
 import com.example.movielistapp.databinding.ActivityMovieDetailBinding
@@ -64,7 +67,7 @@ class MovieDetailActivity : BaseActivity() {
             Glide.with(this@MovieDetailActivity)
                 .load(resources.getIdentifier(movie.imageUrl, "drawable", this@MovieDetailActivity.packageName))
                 .placeholder(R.drawable.ic_priority_high)
-                .centerCrop()
+                .transform(CenterCrop(), RoundedCorners(15))
                 .into(ivImage)
         }
     }
