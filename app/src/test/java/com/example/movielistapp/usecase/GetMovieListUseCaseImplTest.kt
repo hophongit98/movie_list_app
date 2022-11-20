@@ -6,7 +6,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.MockitoAnnotations
 
 /**
  * Created by Phillip Truong
@@ -18,7 +17,6 @@ class GetMovieListUseCaseImplTest {
 
     @Before
     fun setup() {
-        MockitoAnnotations.openMocks(this)
         getMovieListUseCase = GetMovieListUseCaseImpl()
     }
 
