@@ -10,7 +10,7 @@ class MovieRemoteDataSourceImpl(private val getMovieListUseCase: GetMovieListUse
     override suspend fun fetchRemoteMovieList(listener: MovieRemoteDataSource.FetchRemoteMovieList) {
         when (val result = getMovieListUseCase.execute(Unit)) {
             is GetMovieListUseCase.Result.Success -> listener.onSuccess(result.movieList)
-            is GetMovieListUseCase.Result.Error -> listener.onSuccess(emptyList())
+            is GetMovieListUseCase.Result.Error -> listener.onSuccess(emptyList()) // handle error here
         }
     }
 }
