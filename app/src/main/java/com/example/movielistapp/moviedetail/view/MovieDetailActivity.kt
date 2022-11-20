@@ -43,7 +43,7 @@ class MovieDetailActivity : BaseActivity() {
             tvPoint.text = movie.point.toString()
             tvShortDescription.text = movie.shortDescription
             tvGenre.text = StringUtils.convertMovieTypesToString(movie.genre)
-            tvReleasedDate.text = StringUtils.convertToHourAndMinutes(movie.releasedDate)
+            tvReleasedDate.text = StringUtils.formatStringYYYYDMMM(movie.releasedDate)
             btnAddToWatchList.text = if (!movie.isOnWatchList) getString(R.string.movie_detail_add_to_watchlist) else getString(R.string.movie_detail_remove_from_watchlist)
         }
     }

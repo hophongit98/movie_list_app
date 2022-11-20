@@ -1,12 +1,16 @@
 package com.example.movielistapp.utils
 
 import com.example.movielistapp.model.Genre
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by Phillip Truong
  * date 18/11/2022.
  */
 object StringUtils {
+
+    private const val YYYYDMMMM = "yyyy, d MMMM"
 
     fun convertToHourAndMinutes(seconds: Int): String {
         var result = ""
@@ -23,5 +27,9 @@ object StringUtils {
             if (index != genres.size - 1) str += ","
         }
         return str
+    }
+
+    fun formatStringYYYYDMMM(time: Int): String {
+        return SimpleDateFormat(YYYYDMMMM).format(Date(time * 1000L))
     }
 }

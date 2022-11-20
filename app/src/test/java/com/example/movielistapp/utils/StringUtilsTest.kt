@@ -57,4 +57,16 @@ class StringUtilsTest {
         // then
         assertEquals("Action,Adventure", result)
     }
+
+    @Test
+    fun givenTimeInSeconds_whenFormatStringYYYYDMMM_thenReturnResultWithCorrectFormat() {
+        // given
+        val time = 1599091200
+
+        // when
+        val result = StringUtils.formatStringYYYYDMMM(time)
+
+        // then
+        assertEquals("2020, 3 September", result)
+    }
 }
