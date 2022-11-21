@@ -21,12 +21,6 @@ import dagger.Provides
 class AppModule {
 
     @Provides
-    fun provideMovieListViewModel(viewModel: MovieListViewModel): MovieListContract.ViewModel = viewModel
-
-    @Provides
-    fun provideMovieDetailViewModel(viewModel: MovieDetailViewModel): MovieDetailContract.ViewModel = viewModel
-
-    @Provides
     fun provideUserRepository(repository: MovieRepositoryImpl): MovieRepository = repository
 
     @Provides

@@ -22,7 +22,7 @@ class MovieListActivity : BaseActivity() {
     private lateinit var binding: ActivityMovieListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MovieListApplication).appComponent.inject(this)
+        (application as MovieListApplication).appComponent.registerMovieListComponent().create().inject(this)
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
     }

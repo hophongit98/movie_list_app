@@ -30,7 +30,7 @@ class MovieDetailActivity : BaseActivity() {
     private lateinit var binding: ActivityMovieDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MovieListApplication).appComponent.inject(this)
+        (application as MovieListApplication).appComponent.registerMovieDetailComponent().create().inject(this)
         super.onCreate(savedInstanceState)
         supportActionBar?.let {
             it.title = getString(R.string.movie_list_movies)
