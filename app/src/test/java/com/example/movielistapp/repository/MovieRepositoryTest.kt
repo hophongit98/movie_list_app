@@ -25,7 +25,7 @@ class MovieRepositoryTest {
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        repository = MovieRepository(movieLocalDataSource, movieRemoteDataSource)
+        repository = MovieRepositoryImpl(movieLocalDataSource, movieRemoteDataSource)
     }
 
     @Test

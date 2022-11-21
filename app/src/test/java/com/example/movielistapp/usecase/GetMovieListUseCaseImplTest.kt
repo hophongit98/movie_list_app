@@ -36,7 +36,7 @@ class GetMovieListUseCaseImplTest {
             assertEquals(1599091200, first.releaseTime)
 
             val last = result.movieList.last()
-            assertEquals("Adventures: Age Of Ultron", last.movieName)
+            assertEquals("Avengers: Age Of Ultron", last.movieName)
             assertEquals(8.5f, last.point)
             assertEquals(1431388800, last.releaseTime)
         }
