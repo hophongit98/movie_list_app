@@ -9,12 +9,13 @@ import com.example.movielistapp.movielist.MovieListContract.MovieItemDisplayable
 import com.example.movielistapp.repository.MovieRepository
 import com.example.movielistapp.utils.StringUtils
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by Phillip Truong
  * date 17/11/2022.
  */
-class MovieListViewModel(private val movieRepository: MovieRepository) : MovieListContract.ViewModel() {
+class MovieListViewModel @Inject constructor(private val movieRepository: MovieRepository) : MovieListContract.ViewModel() {
 
     private var _isLoading = MutableLiveData<Boolean>()
     override val isLoading: LiveData<Boolean> = _isLoading
@@ -57,17 +58,5 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : MovieLi
 
     private fun formatToShortDescription(duration: Int, types: List<Genre>): String {
         return "${StringUtils.convertToHourAndMinutes(duration)} - ${StringUtils.convertMovieTypesToString(types)}"
-    }
-
-    companion object {
-        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                if (modelClass.isAssignableFrom(MovieListViewModel::class.java)) {
-                    @Suppress("UNCHECKED_CAST")
-                    return MovieListViewModel(MovieListApplication.instance.repository) as T
-                }
-                throw IllegalArgumentException("Unknown ViewModel class")
-            }
-        }
     }
 }

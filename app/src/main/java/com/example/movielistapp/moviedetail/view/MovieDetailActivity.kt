@@ -9,12 +9,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.example.movielistapp.MovieListApplication
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
 import com.example.movielistapp.databinding.ActivityMovieDetailBinding
 import com.example.movielistapp.moviedetail.MovieDetailContract
 import com.example.movielistapp.moviedetail.viewmodel.MovieDetailViewModel
 import com.example.movielistapp.utils.StringUtils
+import javax.inject.Inject
 
 /**
  * Created by Phillip Truong
@@ -22,11 +24,13 @@ import com.example.movielistapp.utils.StringUtils
  */
 class MovieDetailActivity : BaseActivity() {
 
-    private lateinit var viewModel: MovieDetailContract.ViewModel
+    @Inject
+    lateinit var viewModel: MovieDetailContract.ViewModel
 
     private lateinit var binding: ActivityMovieDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MovieListApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         supportActionBar?.let {
             it.title = getString(R.string.movie_list_movies)
@@ -37,10 +41,9 @@ class MovieDetailActivity : BaseActivity() {
 
     override fun initialise() {
         super.initialise()
-        viewModel = ViewModelProvider(this, MovieDetailViewModel.Factory)[MovieDetailViewModel::class.java].also {  viewModel ->
-            intent.getStringExtra(MOVIE_ID)?.let { viewModel.getMovieDetail(it) }
-        }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail)
+
+        intent.getStringExtra(MOVIE_ID)?.let { viewModel.getMovieDetail(it) }
 
         binding.btnAddToWatchList.setOnClickListener {
             viewModel.onAddToWatchList()

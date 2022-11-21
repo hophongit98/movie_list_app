@@ -2,23 +2,27 @@ package com.example.movielistapp.movielist.view
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movielistapp.MovieListApplication
 import com.example.movielistapp.R
 import com.example.movielistapp.base.BaseActivity
 import com.example.movielistapp.databinding.ActivityMovieListBinding
 import com.example.movielistapp.moviedetail.view.MovieDetailActivity
 import com.example.movielistapp.movielist.MovieListContract
 import com.example.movielistapp.movielist.viewmodel.MovieListViewModel
+import javax.inject.Inject
 
 class MovieListActivity : BaseActivity() {
 
-    private lateinit var viewModel: MovieListContract.ViewModel
+    @Inject
+    lateinit var viewModel: MovieListContract.ViewModel
+
     private lateinit var binding: ActivityMovieListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MovieListApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
     }
@@ -26,8 +30,6 @@ class MovieListActivity : BaseActivity() {
     override fun initialise() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_list)
-
-        viewModel = ViewModelProvider(this, MovieListViewModel.Factory)[MovieListViewModel::class.java]
 
         binding.rvMovieList.apply {
             layoutManager = LinearLayoutManager(this@MovieListActivity, RecyclerView.VERTICAL, false)
