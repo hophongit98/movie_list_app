@@ -22,6 +22,7 @@
 
     <TextView
         android:id="@+id/tvMoveName"
+        style="@style/TextTitle.bold.black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -29,9 +30,6 @@
         android:layout_marginEnd="15dp"
         android:paddingStart="5dp"
         android:paddingEnd="15dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivPoster"
@@ -41,12 +39,12 @@
 
     <TextView
         android:id="@+id/tvDescription"
+        style="@style/TextParagraph"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:paddingStart="5dp"
         android:paddingEnd="15dp"
-        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@id/tvOnMyWatchList"
         app:layout_constraintEnd_toEndOf="@id/tvMoveName"
         app:layout_constraintStart_toStartOf="@+id/tvMoveName"
@@ -55,6 +53,7 @@
 
     <TextView
         android:id="@+id/tvOnMyWatchList"
+        style="@style/TextParagraph.black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -63,8 +62,6 @@
         android:paddingEnd="15dp"
         android:text="@string/movie_list_on_my_watchlist"
         android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="15sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/ivPoster"
         app:layout_constraintEnd_toEndOf="@id/tvMoveName"

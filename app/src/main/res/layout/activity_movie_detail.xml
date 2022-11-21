@@ -25,6 +25,7 @@
 
             <TextView
                 android:id="@+id/tvMovieName"
+                style="@style/TextTitle.bold.black"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -32,9 +33,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingStart="0dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/tvPoint"
                 app:layout_constraintStart_toEndOf="@id/ivImage"
                 app:layout_constraintTop_toTopOf="@+id/ivImage"
@@ -42,12 +41,11 @@
 
             <TextView
                 android:id="@+id/tvPoint"
+                style="@style/TextTitle.bold.black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
-                android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/tvTenPoint"
                 app:layout_constraintTop_toTopOf="@id/tvMovieName"
                 tools:text="7.8" />
@@ -71,14 +69,11 @@
 
             <Button
                 android:id="@+id/btnAddToWatchList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/BorderButton"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/border_background_without_stroke"
                 android:includeFontPadding="false"
-                android:paddingStart="15dp"
-                android:paddingEnd="20dp"
                 android:text="@string/movie_detail_add_to_watchlist"
                 android:textSize="12sp"
                 android:visibility="gone"
@@ -89,13 +84,10 @@
 
             <Button
                 android:id="@+id/btnRemoveFromWatchList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/BorderButton"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/border_background_without_stroke"
-                android:paddingStart="15dp"
-                android:paddingEnd="20dp"
                 android:text="@string/movie_detail_remove_from_watchlist"
                 android:textSize="12sp"
                 android:visibility="gone"
@@ -112,16 +104,11 @@
 
             <Button
                 android:id="@+id/btnWatchTrailer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/BorderButton"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_background"
                 android:includeFontPadding="false"
-                android:paddingStart="20dp"
-                android:paddingTop="0dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="0dp"
                 android:text="@string/movie_detail_watch_trailer"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@id/ivImage"
@@ -144,24 +131,22 @@
 
             <TextView
                 android:id="@+id/tvShortDescriptionTitle"
+                style="@style/TextTitle.bold.black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/movie_detail_short_description"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/firstViewHorizontal" />
 
             <TextView
                 android:id="@+id/tvShortDescription"
+                style="@style/TextParagraph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/movie_detail_short_description"
-                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/tvShortDescriptionTitle"
                 app:layout_constraintTop_toBottomOf="@+id/tvShortDescriptionTitle" />
 
@@ -179,52 +164,46 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/movie_detail_details"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                style="@style/TextTitle.bold.black"
                 app:layout_constraintStart_toStartOf="@+id/tvShortDescriptionTitle"
                 app:layout_constraintTop_toBottomOf="@+id/secondBarrierHorizontal" />
 
             <TextView
                 android:id="@+id/tvGenreTitle"
+                style="@style/TextParagraph.bold.black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/movie_detail_genre"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/tvReleasedDateTitle"
                 app:layout_constraintTop_toBottomOf="@+id/tvDetails" />
 
             <TextView
                 android:id="@+id/tvGenre"
+                style="@style/TextParagraph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@id/tvGenreTitle"
                 app:layout_constraintStart_toEndOf="@+id/tvGenreTitle"
                 tools:text="Action, Sci-Fi" />
 
             <TextView
                 android:id="@+id/tvReleasedDateTitle"
+                style="@style/TextParagraph.bold.black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/movie_detail_released_date"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/tvDetails"
                 app:layout_constraintTop_toBottomOf="@+id/tvGenreTitle" />
 
             <TextView
                 android:id="@+id/tvReleasedDate"
+                style="@style/TextParagraph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@id/tvReleasedDateTitle"
                 app:layout_constraintStart_toStartOf="@id/tvGenre"
                 tools:text="2020, 3 September" />
