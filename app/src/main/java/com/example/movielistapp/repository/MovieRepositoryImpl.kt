@@ -7,11 +7,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by Phillip Truong
  * date 18/11/2022.
  */
+@Singleton
 class MovieRepositoryImpl @Inject constructor(private val movieLocalDataSource: MovieLocalDataSource, private val movieRemoteDataSource: MovieRemoteDataSource) : MovieRepository {
 
     override fun getLocalMovieList(): LiveData<List<Movie>> {

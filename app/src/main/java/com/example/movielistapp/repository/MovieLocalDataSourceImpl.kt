@@ -6,11 +6,13 @@ import com.example.movielistapp.model.roomdatabase.MovieDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by Phillip Truong
  * date 18/11/2022.
  */
+@Singleton
 class MovieLocalDataSourceImpl @Inject constructor(private val movieDao: MovieDao) : MovieLocalDataSource {
 
     override fun getMovieList(): LiveData<List<Movie>> {

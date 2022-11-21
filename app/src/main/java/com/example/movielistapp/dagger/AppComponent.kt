@@ -7,11 +7,13 @@ import com.example.movielistapp.movielist._di.MovieListComponent
 import com.example.movielistapp.movielist.view.MovieListActivity
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
 /**
  * Created by Phillip Truong
  * date 21/11/2022.
  */
+@Singleton
 @Component(modules = [AppModule::class, AppSubComponents::class])
 interface AppComponent {
 
